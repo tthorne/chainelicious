@@ -5,7 +5,7 @@
         <div class="content-section">
             <div class="container">
                 <div class="col-lg-12">
-                    <h1>Contact <span class="head">Chainelicious</span> today!</h1>
+                    <h1>Profile</h1>
 
                 </div>
             </div>

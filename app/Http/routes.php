@@ -11,9 +11,38 @@
 |
 */
 
+/*
+ * Home Page
+ */
+
 Route::get('/', 'PagesController@home');
 
+/*
+ *  Contact Page
+ */
+
 Route::get('/contact', 'PagesController@contact');
+
+/*
+ * Product Pages
+ */
+Route::model('categories', 'Category');
+Route::model('products', 'Product');
+
+
+Route::bind('categories', function($value, $route){
+    return App\Category::whereSlug($value)->first();
+
+});
+
+Route::bind('products', function($value, $route){
+    return App\Product::whereSlug($value)->first();
+
+});
+
+Route::resource('categories', 'CategoriesController');
+Route::resource('categories.products', 'ProductsController');
+
 
 Route::get('/products', 'PagesController@products');
 

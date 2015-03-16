@@ -17,9 +17,7 @@
                 <li><a href="/products">Earrings</a></li>
                 <li><a href="/products">Necklaces</a></li>
                 <li><a href="/products">Other Work</a></li>
-                @if (Auth::user()->admin == 1)
-                    <li><a href="/admin"><i class="fa fa fa-cog fa-lg fa-fw fa-spin"></i> Admin</a></li>
-                @endif
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
