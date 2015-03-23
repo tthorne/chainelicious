@@ -90,7 +90,9 @@ class UsersController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$id->delete();
+
+        return Redirect::route('users.show', compact('users'))->with('message', 'Product deleted.');
 	}
 
 }

@@ -6,7 +6,12 @@
             <div class="container">
                 <div class="col-lg-12">
                     <h1>{{ $users->first_name }} {{ $users->last_name }}</h1>
-                    <hr>
+                    <p><strong>Email Address:</strong> {{ $users->email }}</p>
+                    <p><strong>Street Address:</strong> {{ $users->street }}</p>
+                    <p><strong>City:</strong> {{ $users->city }}</p>
+                    <p><strong>State:</strong> {{ $users->state }}</p>
+                    <p><strong>Zip:</strong> {{ $users->zip }}</p>
+                    <p><strong>Phone:</strong> {{ $users->phone }}</p>
 
                 </div>
             </div>

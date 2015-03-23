@@ -49,6 +49,10 @@ Route::resource('categories.products', 'ProductsController');
 
 Route::resource('users', 'UsersController');
 
+/*
+ * Wishlists
+ */
+
 
 
 /**

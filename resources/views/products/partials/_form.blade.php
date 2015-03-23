@@ -29,6 +29,6 @@
 </div>
 
 <div class="form-group">
-    {!! Form::submit($submit_text) !!}
+    {!! Form::submit($submit_text, array('class' => 'btn btn-default')) !!}
 </div>
 

@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Wishlist;
 use Illuminate\Http\Request;
 
 class WishlistsController extends Controller {
@@ -14,7 +15,8 @@ class WishlistsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $wishlists = Wishlist::all();
+        return view('wishlists.index', compact('wishlists'));
 	}
 
 	/**
@@ -24,7 +26,7 @@ class WishlistsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('wishlists.create');
 	}
 
 	/**
