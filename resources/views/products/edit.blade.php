@@ -5,7 +5,11 @@
         <div class="content-section">
             <div class="container">
                 <div class="col-lg-12">
-                    <h1>Categories!</h1>
+                    <h1>Edit Task "{{ $product->name }}"</h1>
+
+                    {!! Form::model($product, ['method' => 'PATCH', 'route' => ['categories.products.update', $category->slug, $product->slug]]) !!}
+                    @include('products/partials/_form', ['submit_text' => 'Edit Task'])
+                    {!! Form::close() !!}
 
                 </div>
             </div>
@@ -21,4 +25,4 @@
             </div>
         </div>
     </section>
-@stop
+@endsection

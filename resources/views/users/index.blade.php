@@ -5,24 +5,18 @@
         <div class="content-section">
             <div class="container">
                 <div class="col-lg-12">
-                    <h1>Categories!</h1>
-                    @if ( !$categories->count() )
+                    <h1>Customers!</h1>
+                    @if ( !$users->count() )
                         You have no projects!
                     @else
                         <ul>
-                            @foreach( $categories as $category)
+                            @foreach( $user as $user)
 
-                                <li>
-                                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('categories.destroy', $category->slug))) !!}
-                                    <a href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a>
-                                    (
-                                    {!! link_to_route('categories.products.create', 'Add Product', array($category->slug), array('class' => 'btn btn-info')) !!},
-                                    )
-                                    {!! Form::close() !!}
+                                <li><a href="">{{ $user->name }}</a>
                                 </li>
                             @endforeach
                         </ul>
-                        @endif
+                    @endif
                 </div>
             </div>
         </div>

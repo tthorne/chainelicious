@@ -5,8 +5,12 @@
         <div class="content-section">
             <div class="container">
                 <div class="col-lg-12">
-                    <h1>Our Current <span class="head">Products</span>!</h1>
-                    @if ( )
+                    <h1>New {{ $category->name }}</h1>
+
+                    {!! Form::model(new App\Product, ['route' => ['categories.products.store', $category->slug], 'class'=>'']) !!}
+                    @include('products/partials/_form', ['submit_text' => 'Add Product'])
+                    {!! Form::close() !!}
+
                 </div>
             </div>
         </div>
@@ -21,4 +25,4 @@
             </div>
         </div>
     </section>
-@stop
+@endsection

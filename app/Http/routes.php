@@ -43,8 +43,12 @@ Route::bind('products', function($value, $route){
 Route::resource('categories', 'CategoriesController');
 Route::resource('categories.products', 'ProductsController');
 
+/*
+ * User Pages
+ */
+Route::resource('users', 'UsersController');
 
-Route::get('/products', 'PagesController@products');
+
 
 /**
  * Authentication

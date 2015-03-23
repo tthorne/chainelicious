@@ -13,10 +13,10 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/contact">Contact Us</a></li>
-                <li><a href="/products">Bracelets</a></li>
-                <li><a href="/products">Earrings</a></li>
-                <li><a href="/products">Necklaces</a></li>
-                <li><a href="/products">Other Work</a></li>
+                <li><a href="/categories/bracelets">Bracelets</a></li>
+                <li><a href="/categories/earrings">Earrings</a></li>
+                <li><a href="/categories/necklaces">Necklaces</a></li>
+                <li><a href="/categories/other">Other Work</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -27,7 +27,17 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user fa-lg fa-fw"></i> {{ Auth::user()->first_name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>Admin: {{ Auth::user()->admin }} </li>
+                            <li><a href="">My Profile</a></li>
+                            <li><a href="">My Wishlist</a></li>
+                            <li class="divider"></li>
+                            @if ( Auth::user()->admin===1 )
+                                <li class="dropdown-header">Administration Panel</li>
+                                <li><a href="/users">Customers</a></li>
+                                <li><a href="/categories">Products</a></li>
+                                <li><a href="/wishlists">Wishlists</a></li>
+                                <li class="divider"></li>
+                            @else
+                            @endif
                             <li><a href="/auth/logout">Logout</a></li>
                         </ul>
                     </li>
