@@ -46,6 +46,7 @@ Route::resource('categories.products', 'ProductsController');
 /*
  * User Pages
  */
+
 Route::resource('users', 'UsersController');
 
 

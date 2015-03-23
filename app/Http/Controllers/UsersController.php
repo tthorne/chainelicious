@@ -1,9 +1,12 @@
 <?php namespace App\Http\Controllers;
 
+use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller {
 
@@ -14,7 +17,8 @@ class UsersController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $users = User::all();
+        return view('users.index', compact('users'));
 	}
 
 	/**
@@ -45,7 +49,8 @@ class UsersController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        $users = User::find($id);
+        return view('users.show', compact('users'));
 	}
 
 	/**
@@ -56,7 +61,8 @@ class UsersController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $users = User::find($id);
+        return view('users.edit', compact('users'));
 	}
 
 	/**
@@ -67,7 +73,13 @@ class UsersController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $users = User::find($id);
+        $users->fill(Input::all());
+        $users->save();
+        $users = User::all();
+
+        return Redirect::route('users.index', compact('users'))->with('message', 'User Updated.');
+
 	}
 
 	/**

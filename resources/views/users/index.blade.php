@@ -5,17 +5,33 @@
         <div class="content-section">
             <div class="container">
                 <div class="col-lg-12">
-                    <h1>Customers!</h1>
+                    <h1>Customers</h1>
                     @if ( !$users->count() )
-                        You have no projects!
+                        You have no customer!
                     @else
-                        <ul>
-                            @foreach( $user as $user)
+                        <table class="table table-striped">
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last name</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            @foreach( $users as $user)
+                                <tbody>
+                                <tr>
+                                    <td>{{ $user->first_name }}</td>
+                                    <td>{{ $user->last_name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('users.destroy', $user->id))) !!}
+                                        {!! link_to_route('users.edit', 'Edit', array($user->id), array('class' => 'btn btn-info')) !!}
+                                        {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
+                                        {!! Form::close() !!}</td>
+                                </tr>
+                                </tbody>
 
-                                <li><a href="">{{ $user->name }}</a>
-                                </li>
                             @endforeach
-                        </ul>
+                        </table>
                     @endif
                 </div>
             </div>
