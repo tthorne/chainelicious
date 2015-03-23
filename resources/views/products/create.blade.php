@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                     <h1>New {{ $category->name }}</h1>
 
-                    {!! Form::model(new App\Product, ['route' => ['categories.products.store', $category->slug], 'class'=>'']) !!}
+                    {!! Form::model(new App\Product, ['route' => ['categories.products.store', $category->slug], 'class'=>'form-group']) !!}
                     @include('products/partials/_form', ['submit_text' => 'Add Product'])
                     {!! Form::close() !!}
 

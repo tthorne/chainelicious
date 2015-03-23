@@ -1,22 +1,29 @@
 <?php namespace App\Http\Controllers;
 
+use App\Wishlist;
+use Input;
+use Redirect;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Wishlist;
 use Illuminate\Http\Request;
 
 class WishlistsController extends Controller {
 
-	/**
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        $wishlists = Wishlist::all();
-        return view('wishlists.index', compact('wishlists'));
+        $wishlists = Wishlist::join('products','products.id', '=', 'wishlists.product_id')
+                ->join('users','users.id', '=', 'wishlists.user_id')
+                ->get(['products.name as product', 'users.first_name as user',
+                'wishlists.id as id']);
+
+
+        return view('wishlists.index')->with('wishlists', $wishlists);
 	}
 
 	/**
@@ -26,7 +33,14 @@ class WishlistsController extends Controller {
 	 */
 	public function create()
 	{
-        return view('wishlists.create');
+        $wishlists = Wishlist::join('products','products.id', '=', 'wishlists.product_id')
+            ->join('users','users.id', '=', 'wishlists.user_id')
+            ->get(['products.name as product', 'users.first_name as user',
+                'wishlists.id as id']);
+
+
+        return view('wishlists.create')->with('wishlists', $wishlists);
+
 	}
 
 	/**
@@ -34,10 +48,10 @@ class WishlistsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		//
-	}
+    public function store()
+    {
+
+    }
 
 	/**
 	 * Display the specified resource.
@@ -47,7 +61,14 @@ class WishlistsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        $wishlists = Wishlist::join('products','products.id', '=', 'wishlists.product_id')
+            ->join('users','users.id', '=', 'wishlists.user_id')
+            ->where('wishlists.user_id', '=', $id)
+            ->get(['products.name as product', 'users.first_name as user',
+                'wishlists.id as id', 'wishlists.description as description']);
+
+
+        return view('wishlists.show')->with('wishlists', $wishlists);
 	}
 
 	/**
@@ -58,7 +79,8 @@ class WishlistsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $wishlists = Wishlist::find($id);
+        return view('wishlists.edit', compact('wishlists'));
 	}
 
 	/**
@@ -67,10 +89,16 @@ class WishlistsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
-	}
+    public function update($id)
+    {
+        $wishlists = Wishlist::find($id);
+        $wishlists->fill(Input::all());
+        $wishlists->save();
+        $wishlists = Wishlist::find($id);
+
+        return Redirect::route('wishlists.show', compact('wishlists'))->with('message', 'User Updated.');
+
+    }
 
 	/**
 	 * Remove the specified resource from storage.
@@ -80,7 +108,10 @@ class WishlistsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        $wishlists = Wishlist::find($id);
+        $wishlists->delete();
+
+        return Redirect::route('wishlists.index', compact('wishlists'))->with('message', 'Wish Item deleted.');
 	}
 
 }

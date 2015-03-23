@@ -50,7 +50,7 @@
                                     Login
                                 </button>
 
-                                <a href="/password/email">Forgot Your Password?</a>
+
                             </div>
                         </div>
                     </form>

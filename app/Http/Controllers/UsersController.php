@@ -76,9 +76,9 @@ class UsersController extends Controller {
         $users = User::find($id);
         $users->fill(Input::all());
         $users->save();
-        $users = User::all();
+        $users = User::find($id);
 
-        return Redirect::route('users.index', compact('users'))->with('message', 'User Updated.');
+        return Redirect::route('users.show', compact('users'))->with('message', 'User Updated.');
 
 	}
 
@@ -88,11 +88,12 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		$id->delete();
+    public function destroy($id)
+    {
+        $users = User::find($id);
+        $users->delete();
 
-        return Redirect::route('users.show', compact('users'))->with('message', 'Product deleted.');
-	}
+        return Redirect::route('users.index', compact('users'))->with('message', 'User deleted.');
+    }
 
 }

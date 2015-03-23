@@ -10,12 +10,20 @@ use App\Category;
 use App\Product;
 
 class ProductsController extends Controller {
+
+    protected $rules = [
+        'name' => ['required', 'min:3'],
+        'slug' => ['required'],
+        'description' => ['required'],
+    ];
+
     /**
      * Display a listing of the resource.
      *
      * @param  \App\Project $project
      * @return Response
      */
+
     public function index(Category $category)
     {
         return view('products.index', compact('category'));
@@ -57,17 +65,21 @@ class ProductsController extends Controller {
         return view('products.edit', compact('category', 'product'));
     }
 
-    public function store(Category $category, Product $product)
+    public function store(Category $category, Product $product, Request $request)
     {
+        $this->validate($request, $this->rules);
+
         $input = Input::all();
         $input['category_id'] = $category->id;
         Product::create( $input );
 
-        return Redirect::route('categories.show', $category->slug)->with('Product created.');
+        return Redirect::route('categories.show', $category->slug)->with('message', 'Product Created.');
     }
 
-    public function update(Category $category, Product $product)
+    public function update(Category $category, Product $product, Request $request)
     {
+        $this->validate($request, $this->rules);
+
         $input = array_except(Input::all(), '_method');
         $product->update($input);
 

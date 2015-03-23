@@ -33,4 +33,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    public function wishlists()
+    {
+        return $this->hasMany('App\Wishlist');
+    }
 }

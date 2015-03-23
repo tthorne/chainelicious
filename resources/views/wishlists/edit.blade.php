@@ -5,10 +5,18 @@
         <div class="content-section">
             <div class="container">
                 <div class="col-lg-12">
-                    <h1>Edit Task "{{ $product->name }}"</h1>
+                    <h1>Edit Wish</h1>
 
-                    {!! Form::model($product, ['method' => 'PATCH', 'route' => ['categories.products.update', $category->slug, $product->slug]]) !!}
-                    @include('products/partials/_form', ['submit_text' => 'Edit Product'])
+                    {!! Form::model($wishlists, ['method' => 'PATCH', 'route' => ['wishlists.update', $wishlists->id]]) !!}
+
+                    <div class="form-group">
+                        {!! Form::label('description', 'Description:') !!}
+                        {!! Form::textarea('description') !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::submit('Submit', array('class' => 'btn btn-default')) !!}
+                    </div>
                     {!! Form::close() !!}
 
                 </div>
@@ -25,4 +33,4 @@
             </div>
         </div>
     </section>
-@endsection
+@stop

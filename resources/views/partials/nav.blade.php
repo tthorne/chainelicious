@@ -28,6 +28,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user fa-lg fa-fw"></i> {{ Auth::user()->first_name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/users/{{ Auth::user()->id }}">My Profile</a></li>
+                            <li><a href="/users/{{ Auth::user()->id }}/edit">Edit My Profile</a></li>
                             <li><a href="/wishlists/{{ Auth::user()->id }}">My Wishlist</a></li>
                             <li class="divider"></li>
                             @if ( Auth::user()->admin===1 )

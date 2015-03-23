@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                     <h1>Customers</h1>
                     @if ( !$users->count() )
-                        You have no customer!
+                        You have no customers!
                     @else
                         <table class="table table-striped">
                             <tr>

@@ -5,11 +5,9 @@
         <div class="content-section">
             <div class="container">
                 <div class="col-lg-12">
-                    <h1>Edit Task "{{ $product->name }}"</h1>
+                    <h1>New Wish{{ $wishlists->product_id }}</h1>
 
-                    {!! Form::model($product, ['method' => 'PATCH', 'route' => ['categories.products.update', $category->slug, $product->slug]]) !!}
-                    @include('products/partials/_form', ['submit_text' => 'Edit Product'])
-                    {!! Form::close() !!}
+
 
                 </div>
             </div>

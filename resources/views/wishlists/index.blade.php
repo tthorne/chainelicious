@@ -7,16 +7,28 @@
                 <div class="col-lg-12">
                     <h1>Wishlists!</h1>
                     @if ( !$wishlists->count() )
-                        You have no projects!
+                        You have no items in your wishlist!
                     @else
-                        <ul>
-                            @foreach( $wishlists as $wishlist)
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Product Name</th>
+                                <th></th>
+                                <th></th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            @foreach( $wishlists as $list )
+                                <tbody>
+                                <tr>
+                                    <td><a href="/wishlists/{{ $list->id }}">{{ $list->product }}</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
 
-                                <li>
-                                    <a href="{{ route('wishlists.show', $wishlist->id) }}">{{ $wishlist->id }}</a>
-                                </li>
                             @endforeach
-                        </ul>
+                        </table>
                     @endif
 
                 </div>

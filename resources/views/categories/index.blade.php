@@ -9,17 +9,28 @@
                     @if ( !$categories->count() )
                         You have no projects!
                     @else
-                        <ul>
-                            @foreach( $categories as $category)
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Name</th>
+                                <th></th>
+                                <th></th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            @foreach( $categories as $category )
+                                <tbody>
+                                <tr>
+                                    <td><a href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('categories.destroy', $category->slug))) !!}
+                                        {!! link_to_route('categories.products.create', 'Add Product', array($category->slug), array('class' => 'btn btn-info')) !!}
+                                        {!! Form::close() !!}</td>
+                                </tr>
+                                </tbody>
 
-                                <li>
-                                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('categories.destroy', $category->slug))) !!}
-                                    <a href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a>
-                                    {!! link_to_route('categories.products.create', 'Add Product', array($category->slug), array('class' => 'btn btn-info')) !!}
-                                    {!! Form::close() !!}
-                                </li>
                             @endforeach
-                        </ul>
+                        </table>
                         @endif
                 </div>
             </div>

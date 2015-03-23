@@ -25,46 +25,4 @@
             </div>
         </div>
     </section>
-    <section id="content">
-        <div class="content-section latest-work">
-            <div class="container">
-                <div class="col-lg-12">
-                    <h1>Latest Work</h1>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="img/nopic.png" alt="..." class="img-thumbnail img-responsive">
-                                <div class="caption">
-                                    <h3>Thumbnail label</h3>
-                                    <p><a href="#" class="btn btn-default" role="button">Button</a></p>
-                                    <p>...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="img/nopic.png" alt="..." class="img-thumbnail img-responsive">
-                                <div class="caption">
-                                    <h3>Thumbnail label</h3>
-                                    <p><a href="#" class="btn btn-default" role="button">Button</a></p>
-                                    <p>...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="img/nopic.png" alt="..." class="img-thumbnail img-responsive">
-                                <div class="caption">
-                                    <h3>Thumbnail label</h3>
-                                    <p><a href="#" class="btn btn-default" role="button">Button</a></p>
-                                    <p>...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
 @stop

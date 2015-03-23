@@ -52,8 +52,7 @@ Route::resource('users', 'UsersController');
 /*
  * Wishlists
  */
-
-
+Route::resource('wishlists', 'WishlistsController');
 
 /**
  * Authentication
