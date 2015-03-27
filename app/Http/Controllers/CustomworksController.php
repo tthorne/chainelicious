@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class CustomworksController extends Controller {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     protected $rules = [
         'description' => ['required'],
         'category' => ['required'],

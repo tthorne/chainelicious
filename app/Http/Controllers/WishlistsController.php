@@ -13,6 +13,12 @@ class WishlistsController extends Controller {
     public function __construct(){
         $this->middleware('auth');
     }
+
+    protected $rules = [
+        'description' => ['required'],
+        'category' => ['required'],
+    ];
+
     /**
 	 * Display a listing of the resource.
 	 *
@@ -20,12 +26,13 @@ class WishlistsController extends Controller {
 	 */
 	public function index()
 	{
-        $wishlists = Wishlist::join('products','products.id', '=', 'wishlists.product_id')
-                ->join('users','users.id', '=', 'wishlists.user_id')
-                ->get(['products.name as product', 'users.first_name as user',
+        $wishlists = Wishlist::join('users','users.id', '=', 'wishlists.user_id')
+                ->get(['users.first_name as first', 'users.first_name as user',
                 'wishlists.id as id', 'wishlists.description as description',
-                    'users.first_name as owner_first',
-                    'users.last_name as owner_last',
+                    'users.first_name as first',
+                    'users.last_name as last',
+                    'wishlists.category as category',
+                    'wishlists.created_at as created',
                     'wishlists.user_id as user_id'
                 ]);
 
@@ -39,24 +46,23 @@ class WishlistsController extends Controller {
 	 * @return Response
 	 */
 	public function create()
-	{
-        $wishlists = Wishlist::join('products','products.id', '=', 'wishlists.product_id')
-            ->join('users','users.id', '=', 'wishlists.user_id')
-            ->get(['products.name as product', 'users.first_name as user',
-                'wishlists.id as id']);
-
-
-        return view('wishlists.create')->with('wishlists', $wishlists);
-
-	}
+    {
+        return view('wishlists.create');
+    }
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-    public function store()
+    public function store(Request $request)
     {
+        $this->validate($request, $this->rules);
+
+        $input = Input::all();
+        Wishlist::create( $input );
+
+        return Redirect::route('wishlists.show', compact('Wishlist'))->with('message', 'Wish Item has been added.');
 
     }
 
@@ -67,16 +73,21 @@ class WishlistsController extends Controller {
 	 * @return Response
 	 */
 	public function show($id)
-	{
-        $wishlists = Wishlist::join('products','products.id', '=', 'wishlists.product_id')
-            ->join('users','users.id', '=', 'wishlists.user_id')
+    {
+        $wishlists = Wishlist::join('users','users.id', '=', 'wishlists.user_id')
             ->where('wishlists.user_id', '=', $id)
-            ->get(['products.name as product', 'users.first_name as user',
-                'wishlists.id as id', 'wishlists.description as description']);
+            ->get(['users.first_name as first', 'users.first_name as user',
+                'wishlists.id as id', 'wishlists.description as description',
+                'users.first_name as first',
+                'users.last_name as last',
+                'wishlists.category as category',
+                'wishlists.created_at as created',
+                'wishlists.user_id as user_id'
+            ]);
 
 
-        return view('wishlists.show')->with('wishlists', $wishlists);
-	}
+        return view('wishlists.index')->with('wishlists', $wishlists);
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -99,10 +110,11 @@ class WishlistsController extends Controller {
     public function update($id)
     {
         $wishlists = Wishlist::find($id);
-        $input = array_except(Input::all(), '_method');
-        $wishlists->update($input);
+        $wishlists->fill(Input::all());
+        $wishlists->save();
+        $wishlists = Wishlist::find($id);
 
-        return Redirect::route('wishlists.show', compact('wishlists'))->with('message', 'Wishlist item as been updated.');
+        return Redirect::route('wishlists.show', compact('wishlists'))->with('message', 'Wish Updated.');
 
     }
 

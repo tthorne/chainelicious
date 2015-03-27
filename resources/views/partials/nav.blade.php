@@ -17,6 +17,7 @@
                 <li><a href="/categories/necklaces">Necklaces</a></li>
                 <li><a href="/categories/other">Other Work</a></li>
                 <li><a href="/customworks/create">Order Custom Work</a></li>
+                <li><a href="/wishlists/create">Add A Wish</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">

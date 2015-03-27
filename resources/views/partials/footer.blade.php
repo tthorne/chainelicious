@@ -13,7 +13,6 @@
                 <i class="fa fa-facebook-square fa-3x"></i> <i class="fa fa-google-plus-square fa-3x"></i> <i class="fa fa-twitter-square fa-3x"></i>
             </div>
             <div class="col-md-6">
-                <a href="policies.php">Store Policies</a> | <a href="privacy.php">Privacy Policy</a>
                 <p>Design & Programming by Copyright &copy; <a href="http://curly-lox.net/" target="new">Curly-Lox Designs</a> 2015 - present</p>
             </div>
         </div>
