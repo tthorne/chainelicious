@@ -12,11 +12,11 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="/contact">Contact Us</a></li>
                 <li><a href="/categories/bracelets">Bracelets</a></li>
                 <li><a href="/categories/earrings">Earrings</a></li>
                 <li><a href="/categories/necklaces">Necklaces</a></li>
                 <li><a href="/categories/other">Other Work</a></li>
+                <li><a href="/customworks/create">Order Custom Work</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -36,6 +36,7 @@
                                 <li><a href="/users">Customers</a></li>
                                 <li><a href="/categories">Products</a></li>
                                 <li><a href="/wishlists">Wishlists</a></li>
+                                <li><a href="/customworks">Custom Work</a></li>
                                 <li class="divider"></li>
                             @else
                             @endif

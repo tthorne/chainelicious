@@ -7,23 +7,24 @@
                 <div class="col-lg-12">
                     <h1>Wishlists!</h1>
                     @if ( !$wishlists->count() )
-                        You have no items in your wishlist!
+                        Sorry there are no wishlist items!
                     @else
                         <table class="table table-striped">
                             <tr>
                                 <th>Product Name</th>
-                                <th></th>
-                                <th></th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             @foreach( $wishlists as $list )
                                 <tbody>
                                 <tr>
-                                    <td><a href="/wishlists/{{ $list->id }}">{{ $list->product }}</a></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><strong>{{ $list->product }}</strong>
+                                        <p>{{ $list->description }}</p>
+                                        <p><a href="/users/{{ $list->user_id }}">{{ $list->owner_first }} {{ $list->owner_last }}</a></p></td>
+                                    <td>{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('wishlists.destroy', $list->id))) !!}
+                                        {!! link_to_route('wishlists.edit', 'Edit', array($list->id), array('class' => 'btn btn-info')) !!}
+                                        {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
+                                        {!! Form::close() !!}</td>
                                 </tr>
                                 </tbody>
 

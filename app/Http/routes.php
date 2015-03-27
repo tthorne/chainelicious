@@ -18,12 +18,6 @@
 Route::get('/', 'PagesController@home');
 
 /*
- *  Contact Page
- */
-
-Route::get('/contact', 'PagesController@contact');
-
-/*
  * Product Pages
  */
 Route::model('categories', 'Category');
@@ -53,6 +47,12 @@ Route::resource('users', 'UsersController');
  * Wishlists
  */
 Route::resource('wishlists', 'WishlistsController');
+
+
+/*
+ * Custom Order Form
+ */
+Route::resource('customworks', 'CustomworksController');
 
 /**
  * Authentication

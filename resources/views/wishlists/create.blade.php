@@ -5,7 +5,7 @@
         <div class="content-section">
             <div class="container">
                 <div class="col-lg-12">
-                    <h1>New Wish{{ $wishlists->product_id }}</h1>
+                    <h1>New Wish {{ $wishlists->name }}</h1>
 
 
 

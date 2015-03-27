@@ -10,4 +10,9 @@ class Product extends Model {
         return $this->belongsTo('App\Category');
     }
 
+    public function wishlist()
+    {
+        return $this->belongsTo('App\Wishlist');
+    }
+
 }

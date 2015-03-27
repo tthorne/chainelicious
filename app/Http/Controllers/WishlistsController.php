@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class WishlistsController extends Controller {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
 	 * Display a listing of the resource.
 	 *
@@ -20,7 +23,11 @@ class WishlistsController extends Controller {
         $wishlists = Wishlist::join('products','products.id', '=', 'wishlists.product_id')
                 ->join('users','users.id', '=', 'wishlists.user_id')
                 ->get(['products.name as product', 'users.first_name as user',
-                'wishlists.id as id']);
+                'wishlists.id as id', 'wishlists.description as description',
+                    'users.first_name as owner_first',
+                    'users.last_name as owner_last',
+                    'wishlists.user_id as user_id'
+                ]);
 
 
         return view('wishlists.index')->with('wishlists', $wishlists);
@@ -92,11 +99,10 @@ class WishlistsController extends Controller {
     public function update($id)
     {
         $wishlists = Wishlist::find($id);
-        $wishlists->fill(Input::all());
-        $wishlists->save();
-        $wishlists = Wishlist::find($id);
+        $input = array_except(Input::all(), '_method');
+        $wishlists->update($input);
 
-        return Redirect::route('wishlists.show', compact('wishlists'))->with('message', 'User Updated.');
+        return Redirect::route('wishlists.show', compact('wishlists'))->with('message', 'Wishlist item as been updated.');
 
     }
 

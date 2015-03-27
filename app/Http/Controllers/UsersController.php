@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller {
 
+    public function __construct(){
+      $this->middleware('auth');
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -61,7 +65,7 @@ class UsersController extends Controller {
 	 */
 	public function edit($id)
 	{
-        $users = User::find($id);
+        $users = User::findOrFail($id);
         return view('users.edit', compact('users'));
 	}
 

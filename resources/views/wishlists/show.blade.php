@@ -18,8 +18,8 @@
                             @foreach( $wishlists as $list )
                                 <tbody>
                                 <tr>
-                                    <td><a href="/wishlists/{{ $list->id }}">{{ $list->product }}</a>
-                                        <p></p>{{ $list->description }}</p></td>
+                                    <td><strong>{{ $list->product }}</strong>
+                                        <p>{{ $list->description }}</p></td>
                                     <td>{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('wishlists.destroy', $list->id))) !!}
                                         {!! link_to_route('wishlists.edit', 'Edit', array($list->id), array('class' => 'btn btn-info')) !!}
                                         {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
